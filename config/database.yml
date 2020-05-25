@@ -22,8 +22,14 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
-  <<: *default
-  database: twodatabases_development
+  default:
+    <<: *default
+    database: twodatabases_development
+    migrations_paths: "db/migrate/default"
+  other:
+    <<: *default
+    database: other_development
+    migrations_paths: "db/migrate/other"
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
